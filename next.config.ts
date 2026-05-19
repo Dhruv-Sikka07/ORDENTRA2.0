@@ -1,7 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  cleanDistDir: false,
+  distDir: ".next-local",
+  turbopack: {
+    root: __dirname,
+  },
 };
 
 export default nextConfig;

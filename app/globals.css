@@ -8,6 +8,12 @@
   --footer-dots-soft: rgba(34, 52, 84, 0.06);
   --cursor-x: 50vw;
   --cursor-y: 50vh;
+  --font-inter:
+    "Aptos", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-display:
+    "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Garamond, serif;
+  --font-mono:
+    "Cascadia Code", "Consolas", "SFMono-Regular", "Liberation Mono", monospace;
 }
 
 html {
@@ -29,16 +35,16 @@ body {
     radial-gradient(circle at 1px 1px, var(--footer-dots) 1.2px, transparent 0);
   background-size: 18px 18px;
   color: var(--foreground);
-  font-family: "Inter", var(--font-inter), Helvetica, sans-serif;
+  font-family: var(--font-inter);
   overflow-x: clip;
 }
 
 .font-display-copy {
-  font-family: var(--font-display), Georgia, serif;
+  font-family: var(--font-display);
 }
 
 .font-mono-copy {
-  font-family: var(--font-mono), "JetBrains Mono", monospace;
+  font-family: var(--font-mono);
 }
 
 .hero-stage {

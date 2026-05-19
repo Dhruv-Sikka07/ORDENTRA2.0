@@ -22,8 +22,6 @@ import {
   MessageSquare,
   Network,
   Package,
-  Phone,
-  ShieldCheck,
   Wallet,
   Workflow,
   X,
@@ -59,6 +57,9 @@ type PricingPlan = {
   subtitle: string;
   price: string;
   priceNote: string;
+  helperText: string;
+  ctaText: string;
+  badge?: string;
   accent: "light" | "primary";
   features: string[];
 };
@@ -130,58 +131,52 @@ const footerLinkGroups = [
 ];
 
 const utilityButtons: IconLinkButton[] = [
-  { label: "Security", icon: Heart },
-  { label: "Docs", icon: Bookmark },
+  { label: "Security & Trust", icon: Heart },
+  { label: "Documentation", icon: Bookmark },
 ];
 
 const featureCards: FeatureCard[] = [
   {
     title: "Order Management",
-    description:
-      "Close the order-to-approval gap with one system for requests, approvals, and transaction visibility.",
+    description: "Close the order-to-approval gap.",
     icon: Wallet,
     accentClass: "bg-sky-100 text-sky-700",
-    eyebrow: "Order-to-approval",
+    eyebrow: "Order Management",
   },
   {
     title: "Procurement",
-    description:
-      "Run source-to-pay workflows without spreadsheet handoffs or disconnected approval chains.",
+    description: "Source-to-pay without spreadsheets.",
     icon: BadgeCheck,
     accentClass: "bg-emerald-100 text-emerald-700",
-    eyebrow: "Source-to-pay",
+    eyebrow: "Procurement",
   },
   {
     title: "Inventory Control",
-    description:
-      "Track live stock across warehouses, sites, and operating units from one control layer.",
+    description: "Live stock across every warehouse.",
     icon: Building2,
     accentClass: "bg-violet-100 text-violet-700",
-    eyebrow: "Live stock",
-  },
-  {
-    title: "Trade Operations",
-    description:
-      "Coordinate trade workflows, vendor movement, and operational controls across every transaction.",
-    icon: Workflow,
-    accentClass: "bg-amber-100 text-amber-700",
-    eyebrow: "Transaction flow",
+    eyebrow: "Inventory Control",
   },
   {
     title: "OPEX Intelligence",
-    description:
-      "See real-time budget versus actual with clear operational spend visibility and reporting.",
+    description: "Real-time budget vs actual.",
     icon: ChartColumnIncreasing,
+    accentClass: "bg-amber-100 text-amber-700",
+    eyebrow: "OPEX Intelligence",
+  },
+  {
+    title: "Integrations",
+    description: "40+ native connectors, 2-hour setup.",
+    icon: Network,
     accentClass: "bg-indigo-100 text-indigo-700",
-    eyebrow: "Real-time spend",
+    eyebrow: "Integrations",
   },
   {
     title: "AI Modules",
-    description:
-      "Bring predictive reorder, anomaly detection, and operational risk signals into the platform as AI ships in 2026.",
+    description: "Predictive reorder, risk, anomaly.",
     icon: ClipboardCheck,
     accentClass: "bg-rose-100 text-rose-700",
-    eyebrow: "AI roadmap",
+    eyebrow: "AI Modules (2026)",
   },
 ];
 
@@ -205,7 +200,7 @@ const floatingTiles: FloatingTile[] = [
     accentClass: "bg-violet-100 text-violet-600",
   },
   {
-    label: "Approvals",
+    label: "Customers",
     icon: Workflow,
     className: "left-[38%] top-[50%] rotate-[8deg]",
     accentClass: "bg-amber-100 text-amber-600",
@@ -223,7 +218,7 @@ const floatingTiles: FloatingTile[] = [
     accentClass: "bg-rose-100 text-rose-600",
   },
   {
-    label: "Insights",
+    label: "Global 2000",
     icon: ChartColumnIncreasing,
     className: "left-[74%] top-[20%] rotate-[10deg]",
     accentClass: "bg-indigo-100 text-indigo-600",
@@ -240,44 +235,41 @@ const workflowSteps = [
   {
     title: "Your stack, mapped",
     description:
-      "We map your existing ERP, commerce, and data footprint before the call so the conversation starts from your real operating environment.",
+      "We pull your existing ERP, commerce, and data footprint onto one canvas before the call - no questionnaires.",
   },
   {
     title: "Reference deployment",
     description:
-      "Walk through a relevant enterprise operating model using ORDENTRA for order flow, procurement, and inventory visibility.",
+      "A live walkthrough of a peer in your vertical running ORDENTRA at scale. Real data, real workflows.",
   },
   {
     title: "Procurement & security Q&A",
     description:
-      "Bring your hardest procurement, connector, and security questions and get answers in writing with the right stakeholders copied.",
+      "Bring your hardest questions. We answer on the call, in writing, with your security team copied.",
   },
 ];
 
 const integrationCards: FeatureCard[] = [
   {
     title: "Native connectors",
-    description:
-      "Connect ERP, finance, warehouse, and commerce systems through 40+ native connectors with fast setup.",
+    description: "40+ native connectors, 2-hour setup.",
     icon: Network,
     accentClass: "bg-sky-100 text-sky-700",
     eyebrow: "40+ connectors",
   },
   {
-    title: "REST API workflows",
-    description:
-      "Extend ORDENTRA into internal services, custom approvals, and external orchestration with API-first integration paths.",
+    title: "REST API",
+    description: "REST API.",
     icon: Workflow,
     accentClass: "bg-violet-100 text-violet-700",
-    eyebrow: "API-first",
+    eyebrow: "REST API",
   },
   {
     title: "CSV / SFTP exchange",
-    description:
-      "Support controlled batch exchange for enterprise environments where partners still rely on secure file-based integrations.",
+    description: "CSV / SFTP.",
     icon: CalendarRange,
     accentClass: "bg-amber-100 text-amber-700",
-    eyebrow: "Enterprise exchange",
+    eyebrow: "CSV / SFTP",
   },
 ];
 
@@ -285,130 +277,130 @@ const securityCards: FeatureCard[] = [
   {
     title: "AES-256 encryption",
     description:
-      "Protect data at rest and in transit, with customer-managed keys available on enterprise deployment paths.",
+      "At-rest and in-transit encryption, with customer-managed keys available on Enterprise and Elite plans.",
     icon: LockKeyhole,
     accentClass: "bg-emerald-100 text-emerald-700",
-    eyebrow: "Security",
+    eyebrow: "Security & Trust",
   },
   {
     title: "Private cloud & on-prem",
     description:
-      "Choose isolated private cloud or on-prem deployment for regulated industries and tightly controlled operating environments.",
+      "VPC-peered, fully isolated tenancy, or on-prem deployment for regulated industries.",
     icon: Building2,
     accentClass: "bg-indigo-100 text-indigo-700",
     eyebrow: "Deployment",
-  },
-  {
-    title: "Review readiness",
-    description:
-      "NDA on request, SOC 2 review packet at GA, and clear written answers for procurement and security review teams.",
-    icon: ShieldCheck,
-    accentClass: "bg-rose-100 text-rose-700",
-    eyebrow: "Compliance",
   },
 ];
 
 const customerSignals: SignalCard[] = [
   {
     metric: "13 days",
-    title: "Avg PO cycle time",
-    description:
-      "Representative procurement performance signal used in the live ORDENTRA story.",
+    title: "avg PO cycle time",
+    description: "13 days avg PO cycle time.",
     icon: ChartColumnIncreasing,
   },
   {
     metric: "Global 2000",
-    title: "Target operating profile",
-    description:
-      "Positioned for enterprises running complex order, procurement, and inventory workflows across large organizations.",
+    title: "Built for the",
+    description: "Built for the Global 2000.",
     icon: Building2,
   },
   {
     metric: "Q2 2026",
     title: "Founding design partners",
     description:
-      "Pre-launch messaging centers on partnering closely with early enterprise deployments ahead of general release.",
+      "Pre-launch - taking on founding design partners for our Q2 2026 release. AI modules shipping 2026.",
     icon: BadgeCheck,
   },
 ];
 
 const pricingPlans: PricingPlan[] = [
   {
-    name: "Core",
-    subtitle: "For focused operational rollouts",
-    price: "Custom",
-    priceNote: "single-region launch",
+    name: "Growth",
+    subtitle: "For mid-market teams scaling operations rapidly.",
+    price: "$1,190/mo",
+    priceNote: "per organization - billed annually",
+    helperText: "14-day evaluation; no credit card",
+    ctaText: "Start Growth Trial",
     accent: "light",
     features: [
-      "Order management foundation",
-      "Procurement workflows",
-      "Inventory control basics",
-      "Connector onboarding",
+      "Up to 50 operational users",
+      "Full procurement + inventory suite",
+      "Multi-warehouse, multi-currency",
+      "Vendor scorecards & SLA tracking",
+      "Custom approval workflows",
+      "Priority support (12x5)",
+      "Standard integrations",
     ],
   },
   {
     name: "Enterprise",
-    subtitle: "For isolated enterprise deployment",
+    subtitle: "For Global 2000 operations at scale.",
     price: "Custom",
-    priceNote: "enterprise rollout",
+    priceNote: "Custom contract",
+    helperText: "Typical go-live within 60 days",
+    ctaText: "Contact Sales",
+    badge: "Most deployed",
     accent: "primary",
     features: [
-      "OPEX intelligence",
-      "AES-256 encryption",
-      "Private cloud options",
-      "Priority implementation",
+      "Unlimited users, warehouses, regions",
+      "AI modules - early access",
+      "SSO, SCIM, SAML, audit logs",
+      "Dedicated customer success manager",
+      "Custom integrations & data residency",
+      "Private cloud / on-prem deployment",
     ],
   },
   {
     name: "Elite",
-    subtitle: "For regulated global operations",
+    subtitle: "For global enterprises with complex requirements.",
     price: "Custom",
-    priceNote: "multi-region program",
+    priceNote: "By engagement",
+    helperText: "White-glove deployment",
+    ctaText: "Schedule Consultation",
     accent: "light",
     features: [
-      "On-prem deployment paths",
-      "Advanced security review",
-      "AI modules roadmap",
-      "Dedicated operating support",
+      "Everything in Enterprise",
+      "Dedicated infrastructure tenancy",
+      "Custom SLA (up to 99.999%)",
+      "Embedded solutions architect",
+      "Roadmap influence & co-development",
+      "Financial indemnification",
+      "Regulatory & audit support",
     ],
   },
 ];
 
 const testimonials: Testimonial[] = [
   {
-    quote:
-      '"BOM-aware procurement and multi-plant stock visibility on one operating layer."',
+    quote: "BOM-aware procurement, multi-plant stock.",
     name: "Manufacturing",
-    role: "BOM-aware procurement",
-    company: "Multi-plant stock",
+    role: "Manufacturing",
+    company: "BOM-aware procurement, multi-plant stock.",
   },
   {
-    quote:
-      '"Shelf-to-supplier visibility at SKU depth without fragmented tools or reporting lag."',
+    quote: "Shelf-to-supplier visibility at SKU depth.",
     name: "Retail & CPG",
-    role: "SKU-level visibility",
-    company: "Supplier coordination",
+    role: "Retail & CPG",
+    company: "Shelf-to-supplier visibility at SKU depth.",
   },
   {
-    quote:
-      '"HIPAA-aligned, lot-tracked, audit-ready workflows for regulated operating environments."',
+    quote: "HIPAA-aligned, lot-tracked, audit-ready.",
     name: "Healthcare",
-    role: "Audit-ready controls",
-    company: "Regulated operations",
+    role: "Healthcare",
+    company: "HIPAA-aligned, lot-tracked, audit-ready.",
   },
   {
-    quote:
-      '"Fleet-aware procurement tied to route-level operating performance and live stock movement."',
+    quote: "Fleet-aware procurement tied to route P&L.",
     name: "Logistics",
-    role: "Route-linked spend control",
-    company: "Fleet operations",
+    role: "Logistics",
+    company: "Fleet-aware procurement tied to route P&L.",
   },
   {
-    quote:
-      '"Operational controls for distributed field operations, critical inventory, and controlled vendor execution."',
+    quote: "Energy & Utilities.",
     name: "Energy & Utilities",
-    role: "Distributed operating control",
-    company: "Critical infrastructure",
+    role: "Energy & Utilities",
+    company: "Energy & Utilities",
   },
 ];
 
@@ -732,15 +724,15 @@ function HeroSection() {
             </div>
 
             <h1 className="hero-title font-display-copy max-w-5xl text-[3rem] font-medium tracking-[-0.08em] text-[#121212] sm:text-[4.5rem] lg:text-[5.25rem] lg:leading-[0.93]">
-              The enterprise
-              <span className="mt-0 block text-[#adadad]">OPEX platform</span>
+              The Enterprise
+              <span className="mt-0 block text-[#adadad]">OPEX Platform</span>
             </h1>
 
             <p className="mt-7 max-w-[38rem] text-base leading-8 text-slate-500 sm:text-[1.15rem]">
-              ORDENTRA unifies Order Management, Trade Operations, and
-              Inventory Control on one intelligent platform built to reduce
-              operational spend and bring real-time visibility to every
-              transaction.
+              ORDENTRA unifies Order Management, Trade Operations & Inventory
+              Control on one intelligent OPEX platform. Built to reduce
+              operational spend, accelerate procurement, and bring real-time
+              visibility to every transaction.
             </p>
 
             <div className="mt-10">
@@ -758,8 +750,8 @@ function HeroSection() {
           <div className="hero-float-left absolute left-5 top-10 z-10 hidden sm:block sm:left-8 lg:left-10 lg:top-11">
             <div className="relative rotate-[-7deg] rounded-[1.35rem] border border-[#f0e0a8] bg-[#ffe97a] px-4 py-4 shadow-[0_18px_35px_rgba(0,0,0,0.08)] sm:px-5 sm:py-5">
               <p className="max-w-[12rem] text-[13px] leading-7 text-[#3f3420]">
-                Reduce operational spend and bring real-time visibility to
-                orders, procurement, and inventory decisions.
+                Built to reduce operational spend, accelerate procurement, and
+                bring real-time visibility to every transaction.
               </p>
             </div>
             <div className="absolute -bottom-9 left-8 rotate-[8deg] rounded-[1.2rem] border border-black/5 bg-white p-4 shadow-[0_16px_32px_rgba(0,0,0,0.08)]">
@@ -772,7 +764,7 @@ function HeroSection() {
           <div className="hero-float-right absolute right-1 top-5 z-10 hidden sm:right-6 sm:block lg:right-8 lg:top-8">
             <div className="relative rotate-[10deg] rounded-[1.5rem] border border-black/5 bg-[#f6f6f6] p-4 shadow-[0_18px_35px_rgba(0,0,0,0.08)] sm:w-[210px]">
               <p className="text-[12px] font-medium text-[#202020]">
-                Founding access
+                Founding design partners
               </p>
               <div className="mt-4 rounded-[1rem] bg-white px-4 py-3">
                 <div className="flex items-center gap-3">
@@ -781,13 +773,13 @@ function HeroSection() {
                   </div>
                   <div className="text-left">
                     <p className="text-[11px] font-medium text-slate-800">
-                      Design partners
+                      Q2 2026 release
                     </p>
-                    <p className="mt-1 text-[10px] text-slate-400">Q2 2026 release</p>
+                    <p className="mt-1 text-[10px] text-slate-400">AI modules shipping 2026</p>
                   </div>
                 </div>
                 <div className="mt-3 rounded-full bg-[#eef5ff] px-3 py-1 text-center text-[10px] font-semibold text-[#4091ff]">
-                  AI modules shipping 2026
+                  Pre-launch - taking on founding design partners
                 </div>
               </div>
               <a
@@ -871,16 +863,15 @@ function FeaturesSection() {
                 Platform modules
               </p>
               <h2 className="font-display-copy mt-6 text-4xl font-semibold tracking-[-0.06em] text-slate-950 sm:text-5xl lg:text-[4rem] lg:leading-[0.96]">
-                One intelligent OPEX platform for every transaction.
+                Order Management, Trade Operations & Inventory Control, unified
+                on one intelligent platform.
               </h2>
               <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg">
-                From order flow and source-to-pay to inventory control and live
-                spend visibility, ORDENTRA gives operations teams one readable
-                layer across complex workflows.
+                Built for the Global 2000.
               </p>
             </div>
 
-            <div className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+            <div className="mx-auto mt-12 grid w-full max-w-[1280px] grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
               {featureCards.map(
                 ({ title, description, icon: Icon, accentClass, eyebrow }, index) => (
                   <Reveal
@@ -932,15 +923,14 @@ function IntegrationsSection() {
             Integrations
           </p>
           <h2 className="font-display-copy mt-6 text-4xl font-semibold tracking-[-0.06em] text-slate-950 sm:text-5xl lg:text-[4rem] lg:leading-[0.96]">
-            Connect ORDENTRA into the systems you already run.
+            Integrations
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg">
-            Native connectors, API-first workflows, and secure batch exchange
-            options keep ORDENTRA usable in real enterprise environments.
+            40+ native connectors, 2-hour setup.
           </p>
         </div>
 
-        <div className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-3">
+        <div className="mx-auto mt-12 grid w-full max-w-[1280px] grid-cols-1 gap-5 md:grid-cols-3">
           {integrationCards.map(
             ({ title, description, icon: Icon, accentClass, eyebrow }, index) => (
               <Reveal
@@ -987,15 +977,14 @@ function SecuritySection() {
             Security
           </p>
           <h2 className="font-display-copy mt-6 text-4xl font-semibold tracking-[-0.06em] text-slate-950 sm:text-5xl lg:text-[4rem] lg:leading-[0.96]">
-            Security and deployment options shaped for enterprise review.
+            Security &amp; Trust
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg">
-            Match procurement and IT expectations with stronger deployment
-            options, encryption, and review-ready operating language.
+            AES-256 encryption. Private cloud &amp; on-prem.
           </p>
         </div>
 
-        <div className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-3">
+        <div className="mx-auto mt-12 grid w-full max-w-[1280px] grid-cols-1 gap-5 md:grid-cols-2">
           {securityCards.map(
             ({ title, description, icon: Icon, accentClass, eyebrow }, index) => (
               <Reveal
@@ -1042,15 +1031,15 @@ function CustomersSection() {
             Customers
           </p>
           <h2 className="font-display-copy mt-6 text-4xl font-semibold tracking-[-0.06em] text-slate-950 sm:text-5xl lg:text-[4rem] lg:leading-[0.96]">
-            The same enterprise proof points carried by the live site.
+            Built for the Global 2000.
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg">
-            This section keeps the current card language while reflecting the
-            live homepage’s enterprise signals and rollout narrative.
+            Order Management, Trade Operations &amp; Inventory Control, unified
+            on one intelligent platform.
           </p>
         </div>
 
-        <div className="mx-auto mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div className="mx-auto mt-12 grid w-full max-w-[1280px] grid-cols-1 gap-6 md:grid-cols-3">
           {customerSignals.map(({ metric, title, description, icon: Icon }, index) => (
             <Reveal
               key={title}
@@ -1096,15 +1085,15 @@ function DemoSection() {
             Your 30 minutes
           </p>
           <h2 className="font-display-copy mt-6 text-4xl font-semibold tracking-[-0.06em] text-slate-950 sm:text-5xl lg:text-[4rem] lg:leading-[0.96]">
-            A demo flow aligned with the live ORDENTRA site.
+            Your 30 minutes
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg">
-            The local page now mirrors the live site’s meeting narrative using
-            the same layout language you already have.
+            Scheduled within 24 hours. NDA available on request. SOC 2 review
+            packet at GA.
           </p>
         </div>
 
-        <div className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-3">
+        <div className="mx-auto mt-12 grid w-full max-w-[1280px] grid-cols-1 gap-5 md:grid-cols-3">
           {workflowSteps.map((step, index) => (
             <Reveal
               key={step.title}
@@ -1136,7 +1125,7 @@ function DemoSection() {
           ))}
         </div>
 
-        <div className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
+        <div className="mx-auto mt-12 grid w-full max-w-[1280px] grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
           {[
             "Scheduled within 24 hours",
             "NDA available on request",
@@ -1166,19 +1155,17 @@ function PricingSection() {
       <Reveal className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
           <p className="inline-flex items-center rounded-full border border-slate-200 bg-white/80 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-slate-700">
-            Commercial fit
+            Pricing
           </p>
           <h2 className="font-display-copy mt-6 text-4xl font-semibold tracking-[-0.06em] text-slate-950 sm:text-5xl lg:text-[4rem] lg:leading-[0.96]">
-            Commercial models built for enterprise rollouts.
+            Pricing
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg">
-            Start with a focused deployment, expand into isolated enterprise
-            environments, and align security, connectors, and operating support
-            to your footprint.
+            Growth, Enterprise, and Elite.
           </p>
         </div>
 
-        <div className="mx-auto mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div className="mx-auto mt-12 grid w-full max-w-[1280px] grid-cols-1 gap-6 md:grid-cols-3">
           {pricingPlans.map((plan, index) => {
             const isPrimary = plan.accent === "primary";
 
@@ -1188,7 +1175,7 @@ function PricingSection() {
                 delay={index * 90}
                 className={
                   isPrimary
-                    ? "relative overflow-hidden rounded-[1.9rem] border border-blue-500/30 bg-[#2f80ff] p-8 text-left text-white shadow-[0_28px_65px_rgba(47,128,255,0.26)] transition duration-300 md:scale-105 hover:-translate-y-1 hover:shadow-[0_34px_75px_rgba(47,128,255,0.3)]"
+                    ? "relative overflow-hidden rounded-[1.9rem] border border-blue-500/30 bg-[#2f80ff] p-8 text-left text-white shadow-[0_28px_65px_rgba(47,128,255,0.26)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_34px_75px_rgba(47,128,255,0.3)]"
                     : "relative overflow-hidden rounded-[1.9rem] border border-black/6 bg-white/82 p-8 text-left shadow-[0_20px_45px_rgba(15,23,42,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_55px_rgba(15,23,42,0.1)]"
                 }
               >
@@ -1221,21 +1208,21 @@ function PricingSection() {
                         isPrimary
                           ? "bg-white/14 text-white"
                           : "bg-slate-100 text-slate-500"
-                      }`}
+                      } ${plan.badge ? "" : "invisible"}`}
                     >
-                      {isPrimary ? "Most requested" : "Flexible"}
+                      {plan.badge ?? ""}
                     </span>
                   </div>
 
                   <p className={`mt-8 text-5xl font-bold ${isPrimary ? "" : "text-black"}`}>
-                    {plan.price}{" "}
-                    <span
-                      className={`text-lg font-medium ${
-                        isPrimary ? "text-blue-100" : "text-gray-500"
-                      }`}
-                    >
-                      {plan.priceNote}
-                    </span>
+                    {plan.price}
+                  </p>
+                  <p
+                    className={`mt-2 text-sm ${
+                      isPrimary ? "text-blue-100" : "text-gray-500"
+                    }`}
+                  >
+                    {plan.priceNote}
                   </p>
 
                   <button
@@ -1245,8 +1232,15 @@ function PricingSection() {
                         : "mt-8 w-full cursor-pointer rounded-xl bg-blue-600 py-3 text-white transition ease-in-out hover:bg-blue-700"
                     }
                   >
-                    Book a Demo
+                    {plan.ctaText}
                   </button>
+                  <p
+                    className={`mt-2 text-center text-[11px] ${
+                      isPrimary ? "text-blue-100" : "text-slate-500"
+                    }`}
+                  >
+                    {plan.helperText}
+                  </p>
 
                   <ul
                     className={`mt-8 space-y-3 ${
@@ -1287,16 +1281,15 @@ function SolutionsSection() {
             Solutions
           </p>
           <h2 className="font-display-copy mt-6 text-4xl font-semibold tracking-[-0.06em] text-slate-950 sm:text-5xl lg:text-[4rem] lg:leading-[0.96]">
-            Built for teams running complex operations.
+            Solutions
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg">
-            ORDENTRA is positioned for manufacturing, retail and CPG,
-            healthcare, logistics, and other operations where visibility,
-            procurement control, and inventory discipline have to work together.
+            Manufacturing, Retail & CPG, Healthcare, Logistics, Energy
+            & Utilities.
           </p>
         </div>
 
-        <div className="mx-auto mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div className="mx-auto mt-12 grid w-full max-w-[1280px] grid-cols-1 gap-6 md:grid-cols-3">
           {testimonials.map((testimonial, index) => (
             <Reveal
               key={testimonial.name}
@@ -1309,11 +1302,10 @@ function SolutionsSection() {
                 <div className="flex items-center justify-center gap-1 text-[#2f80ff]">
                   <span className="text-lg leading-none">&quot;</span>
                   <span className="text-lg leading-none">&quot;</span>
-                  <span className="text-lg leading-none">&quot;</span>
                 </div>
 
                 <p className="mt-5 text-[15px] leading-8 text-slate-600">
-                  {testimonial.quote}
+                  &quot;{testimonial.quote}&quot;
                 </p>
 
                 <div className="mt-8 flex items-center justify-center gap-4">
@@ -1352,7 +1344,7 @@ function SolutionsSection() {
 
 function FooterFeatureGrid() {
   return (
-    <div className="footer-stage relative py-4 sm:px-5 sm:py-6">
+    <div className="footer-stage relative mx-auto w-full max-w-[1280px] overflow-hidden py-4 sm:px-5 sm:py-6">
       <div className="pointer-events-none absolute inset-0 opacity-90">
         <div className="absolute left-[10%] top-[18%] h-52 w-52 rounded-full bg-sky-100/45 blur-3xl" />
         <div className="absolute right-[14%] top-[28%] h-56 w-56 rounded-full bg-violet-100/35 blur-3xl" />
@@ -1403,8 +1395,8 @@ function FooterSection() {
             <span className="font-medium text-emerald-600">
               The Enterprise OPEX Platform
             </span>
-            <a href="#solutions" className="transition hover:text-black">
-              Solutions
+            <a href="#contact" className="transition hover:text-black">
+              Contact Sales
             </a>
           </div>
 
@@ -1424,7 +1416,7 @@ function FooterSection() {
               href="mailto:contact@ordentra.com"
               className="inline-flex items-center justify-center rounded-full bg-[#151830] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#0f1226]"
             >
-              Get in touch
+              Contact Sales
             </a>
           </div>
         </div>
@@ -1437,7 +1429,8 @@ function FooterSection() {
                   Built for the Global 2000
                 </p>
                 <h2 className="footer-headline font-display-copy max-w-[32rem] text-4xl font-semibold tracking-[-0.04em] sm:max-w-[36rem] sm:text-5xl sm:leading-[1.02]">
-                  Unify order management, procurement, and inventory control.
+                  Order Management, Trade Operations & Inventory Control,
+                  unified on one intelligent platform.
                 </h2>
               </div>
 
@@ -1561,3 +1554,4 @@ export default function Home() {
     </main>
   );
 }
+
