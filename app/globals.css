@@ -38,3 +38,14 @@ section[id],
 footer[id] {
   scroll-margin-top: 88px;
 }
+
+/* Force Safari/WebKit vendor prefixes for backdrop blur filters */
+.backdrop-blur-md {
+  -webkit-backdrop-filter: blur(12px) !important;
+  backdrop-filter: blur(12px) !important;
+}
+
+.backdrop-blur-sm {
+  -webkit-backdrop-filter: blur(6px) !important;
+  backdrop-filter: blur(6px) !important;
+}
