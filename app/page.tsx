@@ -199,9 +199,7 @@ function BrandMark({ className = "h-7 w-7" }: { className?: string }) {
   );
 }
 
-function SiteHeader() {
-  const [open, setOpen] = useState(false);
-
+function SiteHeader({ open, setOpen }: { open: boolean; setOpen: (val: boolean | ((prev: boolean) => boolean)) => void }) {
   return (
     <header className="sticky top-0 z-50 border-b border-slate-100 bg-white/80 backdrop-blur-md">
       <div className="mx-auto flex h-[72px] max-w-[1200px] items-center justify-between px-5">
@@ -254,7 +252,7 @@ function SiteHeader() {
         <>
           <div
             onClick={() => setOpen(false)}
-            className="fixed top-[72px] left-0 right-0 bottom-0 z-40 bg-slate-950/25 backdrop-blur-md lg:hidden"
+            className="fixed top-[72px] left-0 right-0 bottom-0 z-40 bg-slate-950/15 lg:hidden"
           />
           <div className="absolute top-[72px] left-0 right-0 z-50 border-b border-slate-200/60 bg-white/95 backdrop-blur-md px-5 py-5 lg:hidden shadow-xl shadow-slate-900/5">
             <nav className="mx-auto flex max-w-[1200px] flex-col gap-1">
@@ -728,17 +726,21 @@ function Footer() {
 }
 
 export default function HomePage() {
+  const [open, setOpen] = useState(false);
+
   return (
     <main className="min-h-screen bg-white text-slate-950">
-      <SiteHeader />
-      <HeroSection />
-      <TrustSection />
-      <FeaturesSection />
-      <ModulesSection />
-      <WorkflowSection />
-      <DashboardCtaSection />
-      <CtaBand />
-      <Footer />
+      <SiteHeader open={open} setOpen={setOpen} />
+      <div className={`transition-all duration-350 ${open ? "blur-md pointer-events-none select-none" : ""}`}>
+        <HeroSection />
+        <TrustSection />
+        <FeaturesSection />
+        <ModulesSection />
+        <WorkflowSection />
+        <DashboardCtaSection />
+        <CtaBand />
+        <Footer />
+      </div>
     </main>
   );
 }
