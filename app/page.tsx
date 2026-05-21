@@ -251,7 +251,7 @@ function SiteHeader() {
       </div>
 
       {open ? (
-        <div className="border-t border-slate-100 bg-white px-5 py-4 lg:hidden">
+        <div className="absolute top-[72px] left-0 right-0 border-b border-slate-200/60 bg-white/95 backdrop-blur-md px-5 py-5 lg:hidden shadow-xl shadow-slate-900/5">
           <nav className="mx-auto flex max-w-[1200px] flex-col gap-1">
             {navItems.map((item) => (
               <a
