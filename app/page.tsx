@@ -402,53 +402,51 @@ function ModuleCard({ item }: { item: CardItem }) {
 function HeroSection() {
   return (
     <section className="bg-[linear-gradient(180deg,#ffffff_0%,#f8fafc_100%)]">
-      <div className="mx-auto grid max-w-[1200px] items-center gap-12 px-5 py-16 lg:grid-cols-[0.85fr_1.15fr] lg:py-20">
-        <div>
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-blue-50 px-3.5 py-1.5 text-[12px] font-semibold text-[#1557ff]">
-            <Sparkles className="h-4 w-4" />
-            All-in-One Business Management Solution
-          </div>
-          <h1 className="font-display max-w-[520px] text-[44px] font-extrabold leading-[1.08] tracking-tight text-slate-900 sm:text-[56px]">
-            Simplify. Automate. Grow with <span className="text-[#1557ff]">ORDENTRA</span>
-          </h1>
-          <p className="mt-6 max-w-[560px] text-[16px] font-medium leading-relaxed text-slate-500">
-            Manage your entire business operations - finance, HR, inventory,
-            sales and more - in one unified and intelligent ERP platform.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-4">
-            <a
-              href="#contact"
-              className="inline-flex items-center gap-2 rounded-xl bg-[#1557ff] px-6 py-3.5 text-[14px] font-semibold text-white shadow-[0_10px_25px_rgba(21,87,255,0.15)] transition-all duration-300 hover:bg-[#0f48dc] hover:shadow-[0_12px_28px_rgba(21,87,255,0.25)] hover:scale-[1.01]"
-            >
-              Book a Demo
-              <ArrowRight className="h-4 w-4" />
-            </a>
-            <a
-              href="#modules"
-              className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-3.5 text-[14px] font-semibold text-slate-600 transition-all duration-300 hover:border-slate-350 hover:text-slate-900 hover:shadow-[0_4px_12px_rgba(0,0,0,0.02)] hover:scale-[1.01]"
-            >
-              Explore Modules
-              <ArrowRight className="h-4 w-4" />
-            </a>
-          </div>
-          <div className="mt-10 grid max-w-[520px] grid-cols-3 gap-4 text-[12px] font-medium text-slate-500">
-            {[
-              ["Cloud Based", Cloud],
-              ["Secure & Reliable", ShieldCheck],
-              ["Easy to Use", CheckCircle2],
-            ].map(([label, Icon]) => {
-              const BadgeIcon = Icon as LucideIcon;
-              return (
-                <div key={label as string} className="flex items-center gap-2">
-                  <BadgeIcon className="h-4 w-4 text-[#1557ff]" />
-                  <span>{label as string}</span>
-                </div>
-              );
-            })}
-          </div>
+      <div className="mx-auto flex max-w-[1200px] flex-col items-center px-5 py-16 lg:py-24 text-center">
+        <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-blue-50 px-3.5 py-1.5 text-[12px] font-semibold text-[#1557ff]">
+          <Sparkles className="h-4 w-4" />
+          All-in-One Business Management Solution
+        </div>
+        <h1 className="font-display max-w-[800px] text-[48px] font-extrabold leading-[1.08] tracking-tight text-slate-900 sm:text-[68px]">
+          Simplify. Automate. Grow with <span className="text-[#1557ff]">ORDENTRA</span>
+        </h1>
+        <p className="mt-6 max-w-[620px] text-[17px] font-medium leading-relaxed text-slate-500">
+          Manage your entire business operations - finance, HR, inventory,
+          sales and more - in one unified and intelligent ERP platform.
+        </p>
+        <div className="mt-8 flex flex-wrap justify-center gap-4">
+          <a
+            href="#contact"
+            className="inline-flex items-center gap-2 rounded-xl bg-[#1557ff] px-6 py-3.5 text-[14px] font-semibold text-white shadow-[0_10px_25px_rgba(21,87,255,0.15)] transition-all duration-300 hover:bg-[#0f48dc] hover:shadow-[0_12px_28px_rgba(21,87,255,0.25)] hover:scale-[1.01]"
+          >
+            Book a Demo
+            <ArrowRight className="h-4 w-4" />
+          </a>
+          <a
+            href="#modules"
+            className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-3.5 text-[14px] font-semibold text-slate-600 transition-all duration-300 hover:border-slate-350 hover:text-slate-900 hover:shadow-[0_4px_12px_rgba(0,0,0,0.02)] hover:scale-[1.01]"
+          >
+            Explore Modules
+            <ArrowRight className="h-4 w-4" />
+          </a>
+        </div>
+        <div className="mt-10 flex flex-wrap justify-center gap-x-8 gap-y-3 text-[12px] font-medium text-slate-500">
+          {[
+            ["Cloud Based", Cloud],
+            ["Secure & Reliable", ShieldCheck],
+            ["Easy to Use", CheckCircle2],
+          ].map(([label, Icon]) => {
+            const BadgeIcon = Icon as LucideIcon;
+            return (
+              <div key={label as string} className="flex items-center gap-2">
+                <BadgeIcon className="h-4 w-4 text-[#1557ff]" />
+                <span>{label as string}</span>
+              </div>
+            );
+          })}
         </div>
 
-        <div className="hidden lg:block">
+        <div className="mt-16 w-full max-w-[1000px] hidden lg:block">
           <DashboardPreview />
         </div>
       </div>
@@ -479,12 +477,12 @@ function TrustSection() {
 function FeaturesSection() {
   return (
     <section id="features" className="bg-slate-50/50 px-5 py-20 border-y border-slate-100/80">
-      <div className="mx-auto max-w-[1200px]">
+      <div className="mx-auto max-w-[1200px] text-center">
         <p className="text-[12px] font-bold uppercase tracking-wider text-[#1557ff]">Why choose ORDENTRA</p>
-        <h2 className="font-display mt-2.5 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+        <h2 className="font-display mt-2.5 text-[34px] font-extrabold tracking-tight text-slate-900 sm:text-[44px]">
           Everything You Need to Run Your Business
         </h2>
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid gap-6 text-left sm:grid-cols-2 lg:grid-cols-3">
           {featureCards.map((item) => (
             <FeatureCard key={item.title} item={item} />
           ))}
@@ -498,26 +496,24 @@ function ModulesSection() {
   return (
     <section id="modules" className="bg-white px-5 py-20">
       <div className="mx-auto max-w-[1200px]">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 pb-12">
-          <div className="max-w-[620px]">
-            <p className="text-[12px] font-bold uppercase tracking-wider text-[#1557ff]">Our modules</p>
-            <h2 className="font-display mt-2.5 text-3xl font-extrabold tracking-tight leading-tight text-slate-900 sm:text-4xl">
-              All Your Operations, One Integrated Platform
-            </h2>
-            <p className="mt-4 text-[15px] font-medium leading-relaxed text-slate-500">
-              Powerful modules designed to streamline every department of your business.
-            </p>
-          </div>
+        <div className="mx-auto max-w-[800px] text-center pb-12 flex flex-col items-center">
+          <p className="text-[12px] font-bold uppercase tracking-wider text-[#1557ff]">Our modules</p>
+          <h2 className="font-display mt-2.5 text-[34px] font-extrabold tracking-tight leading-tight text-slate-900 sm:text-[44px]">
+            All Your Operations, One Integrated Platform
+          </h2>
+          <p className="mt-4 max-w-[600px] text-[16px] font-medium leading-relaxed text-slate-500">
+            Powerful modules designed to streamline every department of your business.
+          </p>
           <a
             href="#modules"
-            className="inline-flex items-center gap-2 rounded-xl bg-[#1557ff] px-6 py-3.5 text-[14px] font-semibold text-white shadow-[0_10px_25px_rgba(21,87,255,0.15)] transition-all duration-300 hover:bg-[#0f48dc] hover:shadow-[0_12px_28px_rgba(21,87,255,0.25)] hover:scale-[1.01]"
+            className="mt-6 inline-flex items-center gap-2 rounded-xl bg-[#1557ff] px-6 py-3.5 text-[14px] font-semibold text-white shadow-[0_10px_25px_rgba(21,87,255,0.15)] transition-all duration-300 hover:bg-[#0f48dc] hover:shadow-[0_12px_28px_rgba(21,87,255,0.25)] hover:scale-[1.01]"
           >
             Explore All Modules
             <ArrowRight className="h-4 w-4" />
           </a>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 text-left sm:grid-cols-2 lg:grid-cols-3">
           {moduleCards.map((item) => (
             <ModuleCard key={item.title} item={item} />
           ))}
@@ -531,26 +527,24 @@ function WorkflowSection() {
   return (
     <section className="bg-slate-50/20 px-5 py-20 border-b border-slate-100/80">
       <div className="mx-auto max-w-[1200px]">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 pb-12">
-          <div className="max-w-[620px]">
-            <p className="text-[12px] font-bold uppercase tracking-wider text-[#1557ff]">Smart workflow</p>
-            <h2 className="font-display mt-2.5 text-3xl font-extrabold tracking-tight leading-tight text-slate-900 sm:text-4xl">
-              How ORDENTRA Works for You
-            </h2>
-            <p className="mt-4 text-[15px] font-medium leading-relaxed text-slate-500">
-              Seamless integration of all your business processes in one connected flow.
-            </p>
-          </div>
+        <div className="mx-auto max-w-[800px] text-center pb-12 flex flex-col items-center">
+          <p className="text-[12px] font-bold uppercase tracking-wider text-[#1557ff]">Smart workflow</p>
+          <h2 className="font-display mt-2.5 text-[34px] font-extrabold tracking-tight leading-tight text-slate-900 sm:text-[44px]">
+            How ORDENTRA Works for You
+          </h2>
+          <p className="mt-4 max-w-[600px] text-[16px] font-medium leading-relaxed text-slate-500">
+            Seamless integration of all your business processes in one connected flow.
+          </p>
           <a
             href="#contact"
-            className="inline-flex items-center gap-2 rounded-xl bg-[#1557ff] px-6 py-3.5 text-[14px] font-semibold text-white shadow-[0_10px_25px_rgba(21,87,255,0.15)] transition-all duration-300 hover:bg-[#0f48dc] hover:shadow-[0_12px_28px_rgba(21,87,255,0.25)] hover:scale-[1.01]"
+            className="mt-6 inline-flex items-center gap-2 rounded-xl bg-[#1557ff] px-6 py-3.5 text-[14px] font-semibold text-white shadow-[0_10px_25px_rgba(21,87,255,0.15)] transition-all duration-300 hover:bg-[#0f48dc] hover:shadow-[0_12px_28px_rgba(21,87,255,0.25)] hover:scale-[1.01]"
           >
             See How It Works
             <ArrowRight className="h-4 w-4" />
           </a>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+        <div className="grid gap-6 text-left sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
           {workflowCards.map((item, index) => {
             const Icon = item.icon;
             return (
@@ -590,17 +584,17 @@ function DashboardCtaSection() {
             <DashboardPreview />
           </div>
         </div>
-        <div className="flex flex-col justify-center p-8 sm:p-12 lg:p-16">
+        <div className="flex flex-col justify-center items-center text-center p-8 sm:p-12 lg:p-16">
           <p className="text-[12px] font-bold uppercase tracking-wider text-[#1557ff]">Powerful dashboard</p>
-          <h2 className="font-display mt-2.5 text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl leading-tight">
+          <h2 className="font-display mt-2.5 text-[28px] font-extrabold tracking-tight text-slate-900 sm:text-[34px] lg:text-[40px] leading-tight">
             Get Complete Visibility of Your Business
           </h2>
-          <p className="mt-4 max-w-[560px] text-[14.5px] font-medium leading-relaxed text-slate-500">
+          <p className="mt-4 max-w-[560px] text-[15px] font-medium leading-relaxed text-slate-500">
             Track performance, monitor KPIs and make data-driven decisions with powerful dashboards and reports.
           </p>
           <a
             href="#contact"
-            className="mt-8 inline-flex w-fit items-center gap-2 rounded-xl bg-[#1557ff] px-6 py-3.5 text-[14px] font-semibold text-white shadow-[0_10px_25px_rgba(21,87,255,0.15)] transition-all duration-300 hover:bg-[#0f48dc] hover:shadow-[0_12px_28px_rgba(21,87,255,0.25)] hover:scale-[1.01]"
+            className="mt-8 inline-flex items-center gap-2 rounded-xl bg-[#1557ff] px-6 py-3.5 text-[14px] font-semibold text-white shadow-[0_10px_25px_rgba(21,87,255,0.15)] transition-all duration-300 hover:bg-[#0f48dc] hover:shadow-[0_12px_28px_rgba(21,87,255,0.25)] hover:scale-[1.01]"
           >
             Book a Demo
             <ArrowRight className="h-4 w-4" />
@@ -614,21 +608,21 @@ function DashboardCtaSection() {
 function CtaBand() {
   return (
     <section className="bg-white px-5 py-8">
-      <div className="mx-auto flex max-w-[1200px] flex-col gap-6 rounded-2xl bg-slate-900 px-8 py-10 text-white shadow-[0_12px_40px_rgba(0,0,0,0.08)] md:flex-row md:items-center md:justify-between">
-        <div className="flex items-center gap-5">
-          <div className="hidden h-14 w-14 items-center justify-center rounded-xl border border-white/10 bg-white/5 md:flex">
+      <div className="mx-auto flex max-w-[1200px] flex-col gap-6 rounded-2xl bg-slate-900 px-8 py-10 text-white shadow-[0_12px_40px_rgba(0,0,0,0.08)] items-center text-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <div className="flex h-14 w-14 items-center justify-center rounded-xl border border-white/10 bg-white/5">
             <CalendarDays className="h-7 w-7 text-white" />
           </div>
           <div>
-            <h2 className="font-display text-2xl font-bold tracking-tight">Ready to Transform Your Business?</h2>
-            <p className="mt-1 text-[14px] font-medium text-slate-400">
+            <h2 className="font-display text-[26px] sm:text-[32px] font-bold tracking-tight">Ready to Transform Your Business?</h2>
+            <p className="mt-2 max-w-[600px] text-[15px] font-medium text-slate-400">
               Book a free demo and see how ORDENTRA can help you automate, simplify and grow.
             </p>
           </div>
         </div>
         <a
           href="#contact"
-          className="inline-flex w-fit items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-[14px] font-semibold text-slate-900 shadow-sm transition-all duration-300 hover:bg-slate-50 hover:scale-[1.01]"
+          className="mt-4 inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-[14px] font-semibold text-slate-900 shadow-sm transition-all duration-300 hover:bg-slate-50 hover:scale-[1.01]"
         >
           Book a Free Demo
           <ArrowRight className="h-4 w-4" />
