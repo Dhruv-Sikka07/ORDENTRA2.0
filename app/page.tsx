@@ -254,7 +254,7 @@ function SiteHeader() {
         <>
           <div
             onClick={() => setOpen(false)}
-            className="fixed inset-0 top-[72px] z-40 bg-slate-950/15 backdrop-blur-sm lg:hidden"
+            className="fixed top-[72px] left-0 right-0 bottom-0 z-40 bg-slate-950/25 backdrop-blur-md lg:hidden"
           />
           <div className="absolute top-[72px] left-0 right-0 z-50 border-b border-slate-200/60 bg-white/95 backdrop-blur-md px-5 py-5 lg:hidden shadow-xl shadow-slate-900/5">
             <nav className="mx-auto flex max-w-[1200px] flex-col gap-1">
