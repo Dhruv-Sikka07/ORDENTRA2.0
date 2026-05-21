@@ -247,37 +247,6 @@ function SiteHeader({ open, setOpen }: { open: boolean; setOpen: (val: boolean |
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </div>
-
-      {open ? (
-        <>
-          <div
-            onClick={() => setOpen(false)}
-            className="fixed top-[72px] left-0 right-0 bottom-0 z-40 bg-slate-950/15 lg:hidden"
-          />
-          <div className="absolute top-[72px] left-0 right-0 z-50 border-b border-slate-200/60 bg-white/95 backdrop-blur-md px-5 py-5 lg:hidden shadow-xl shadow-slate-900/5">
-            <nav className="mx-auto flex max-w-[1200px] flex-col gap-1">
-              {navItems.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  onClick={() => setOpen(false)}
-                  className="flex items-center justify-between rounded-xl px-3 py-3 text-sm font-semibold text-slate-800 hover:bg-slate-50"
-                >
-                  {item.label}
-                  {item.hasMenu ? <ChevronDown className="h-4 w-4" /> : null}
-                </a>
-              ))}
-              <a
-                href="#contact"
-                onClick={() => setOpen(false)}
-                className="mt-3 rounded-xl bg-[#1557ff] px-4 py-3 text-center text-sm font-semibold text-white"
-              >
-                Book a Demo
-              </a>
-            </nav>
-          </div>
-        </>
-      ) : null}
     </header>
   );
 }
@@ -731,7 +700,41 @@ export default function HomePage() {
   return (
     <main className="min-h-screen bg-white text-slate-950">
       <SiteHeader open={open} setOpen={setOpen} />
-      <div className={`transition-all duration-350 ${open ? "blur-md pointer-events-none select-none" : ""}`}>
+      
+      {open ? (
+        <>
+          {/* Mobile Overlay Backdrop */}
+          <div
+            onClick={() => setOpen(false)}
+            className="fixed inset-0 top-[72px] z-40 bg-slate-950/15 lg:hidden"
+          />
+          {/* Mobile Menu Dropdown */}
+          <div className="fixed top-[72px] left-0 right-0 z-50 border-b border-slate-200/60 bg-white/95 backdrop-blur-md px-5 py-5 lg:hidden shadow-xl shadow-slate-900/5">
+            <nav className="mx-auto flex max-w-[1200px] flex-col gap-1">
+              {navItems.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  className="flex items-center justify-between rounded-xl px-3 py-3 text-sm font-semibold text-slate-800 hover:bg-slate-50"
+                >
+                  {item.label}
+                  {item.hasMenu ? <ChevronDown className="h-4 w-4" /> : null}
+                </a>
+              ))}
+              <a
+                href="#contact"
+                onClick={() => setOpen(false)}
+                className="mt-3 rounded-xl bg-[#1557ff] px-4 py-3 text-center text-sm font-semibold text-white"
+              >
+                Book a Demo
+              </a>
+            </nav>
+          </div>
+        </>
+      ) : null}
+
+      <div className={`transition-[filter] duration-300 ${open ? "blur-md pointer-events-none select-none" : ""}`}>
         <HeroSection />
         <TrustSection />
         <FeaturesSection />
