@@ -475,7 +475,9 @@ function HeroSection() {
           </div>
         </div>
 
-        <DashboardPreview />
+        <div className="hidden lg:block">
+          <DashboardPreview />
+        </div>
       </div>
     </section>
   );
@@ -610,8 +612,8 @@ function DashboardCtaSection() {
   return (
     <section id="pricing" className="bg-white px-5 py-12">
       <div className="mx-auto grid max-w-[1200px] overflow-hidden rounded-3xl border border-slate-150 bg-[#f8fafc] shadow-[0_8px_30px_rgba(0,0,0,0.01)] lg:grid-cols-[1.1fr_1fr]">
-        <div className="relative min-h-[320px] lg:min-h-[400px] overflow-hidden bg-slate-50/30">
-          <div className="absolute top-8 left-8 w-[140%] sm:w-[125%] lg:w-[130%] xl:w-[125%] transition-transform duration-500 hover:scale-[1.02] hover:-rotate-1">
+        <div className="relative hidden lg:block min-h-[400px] overflow-hidden bg-slate-50/30">
+          <div className="absolute top-8 left-8 w-[130%] xl:w-[125%] transition-transform duration-500 hover:scale-[1.02] hover:-rotate-1">
             <DashboardPreview />
           </div>
         </div>
