@@ -251,28 +251,34 @@ function SiteHeader() {
       </div>
 
       {open ? (
-        <div className="absolute top-[72px] left-0 right-0 border-b border-slate-200/60 bg-white/95 backdrop-blur-md px-5 py-5 lg:hidden shadow-xl shadow-slate-900/5">
-          <nav className="mx-auto flex max-w-[1200px] flex-col gap-1">
-            {navItems.map((item) => (
+        <>
+          <div
+            onClick={() => setOpen(false)}
+            className="fixed inset-0 top-[72px] z-40 bg-slate-950/15 backdrop-blur-sm lg:hidden"
+          />
+          <div className="absolute top-[72px] left-0 right-0 z-50 border-b border-slate-200/60 bg-white/95 backdrop-blur-md px-5 py-5 lg:hidden shadow-xl shadow-slate-900/5">
+            <nav className="mx-auto flex max-w-[1200px] flex-col gap-1">
+              {navItems.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  className="flex items-center justify-between rounded-xl px-3 py-3 text-sm font-semibold text-slate-800 hover:bg-slate-50"
+                >
+                  {item.label}
+                  {item.hasMenu ? <ChevronDown className="h-4 w-4" /> : null}
+                </a>
+              ))}
               <a
-                key={item.label}
-                href={item.href}
+                href="#contact"
                 onClick={() => setOpen(false)}
-                className="flex items-center justify-between rounded-xl px-3 py-3 text-sm font-semibold text-slate-800 hover:bg-slate-50"
+                className="mt-3 rounded-xl bg-[#1557ff] px-4 py-3 text-center text-sm font-semibold text-white"
               >
-                {item.label}
-                {item.hasMenu ? <ChevronDown className="h-4 w-4" /> : null}
+                Book a Demo
               </a>
-            ))}
-            <a
-              href="#contact"
-              onClick={() => setOpen(false)}
-              className="mt-3 rounded-xl bg-[#1557ff] px-4 py-3 text-center text-sm font-semibold text-white"
-            >
-              Book a Demo
-            </a>
-          </nav>
-        </div>
+            </nav>
+          </div>
+        </>
       ) : null}
     </header>
   );
